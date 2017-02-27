@@ -1,0 +1,22 @@
+[Unit]
+Description=Service for virtual machines hosted on VMware
+Documentation=http://github.com/vmware/open-vm-tools
+ConditionVirtualization=vmware
+Requires=docker.service
+After=docker.service
+
+[Service]
+#ExecStart=/usr/bin/vmtoolsd
+ExecStart=/usr/bin/runc run openvmtools
+WorkingDirectory=/var/lib/containers/atomic/open-vm-tools/
+#ExecStart=/usr/bin/docker run  --privileged -v /:/host -v /proc/:/hostproc/ -v /sys/fs/cgroup:/sys/fs/cgroup  -v /var/log:/var/log -v /run/systemd:/run/systemd -v /sysroot:/sysroot -v=/var/lib/sss/pipes/:/var/lib/sss/pipes/ -v /etc/passwd:/etc/passwd -v /etc/shadow:/etc/shadow -v /tmp:/tmp -v /etc/sysconfig:/etc/sysconfig -v /etc/resolv.conf:/etc/resolv.conf -v /etc/nsswitch.conf:/etc/nsswitch.conf -v /etc/hosts:/etc/hosts -v /etc/hostname:/etc/hostname -v /usr/share/zoneinfo:/usr/share/zoneinfo --env container=docker --net=host --pid=host  openvmtools
+
+#ExecStart=/usr/bin/docker run  --privileged -v /proc/:/hostproc/ -v /sys/fs/cgroup:/sys/fs/cgroup  -v /var/log:/var/log -v /run/systemd:/run/systemd -v /sysroot:/sysroot -v=/var/lib/sss/pipes/:/var/lib/sss/pipes/:rw -v /etc/passwd:/etc/passwd -v /etc/shadow:/etc/shadow -v /tmp:/tmp:rw -v /etc/sysconfig:/etc/sysconfig:rw -v /etc/resolv.conf:/etc/resolv.conf:rw -v /etc/nsswitch.conf:/etc/nsswitch.conf:rw -v /etc/hosts:/etc/hosts:rw -v /etc/hostname:/etc/hostname:rw -v /etc/localtime:/etc/localtime:rw -v /usr/share/zoneinfo:/usr/share/zoneinfo --env container=docker --net=host  openvmtools
+#ExecStart=/usr/bin/docker run  --privileged -v /proc/:/hostproc/ -v /sys/fs/cgroup:/sys/fs/cgroup  -v /var/log:/var/log -v /run/systemd:/run/systemd -v /sysroot:/sysroot -v=/var/lib/sss/pipes/:/var/lib/sss/pipes/:rw -v /etc/passwd:/etc/passwd -v /etc/shadow:/etc/shadow -v /tmp:/tmp:rw -v /etc/sysconfig:/etc/sysconfig:rw -v /etc/resolv.conf:/etc/resolv.conf:rw -v /etc/nsswitch.conf:/etc/nsswitch.conf:rw -v /etc/hosts:/etc/hosts:rw -v /etc/hostname:/etc/hostname:rw --env container=docker --net=host  --pid=host openvmtools
+#ExecStop=/usr/bin/docker stop -t openvmtools
+ExecStop=/usr/bin/runc delete openvmtools
+TimeoutStopSec=5
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
