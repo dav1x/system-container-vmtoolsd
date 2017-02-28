@@ -1,5 +1,5 @@
 {
-    "ociVersion": "0.5.0",
+    "ociVersion": "1.0.0",
     "platform": {
         "os": "linux",
         "arch": "x86_64"
@@ -8,8 +8,6 @@
         "terminal": false,
         "user": {},
         "args": [
-            "/bin/sh",
-            "-c",
             "/usr/bin/vmtoolsd"
         ],
         "env": [
@@ -71,7 +69,7 @@
         "path": "rootfs",
         "readonly": true
     },
-    "hostname": "flannel",
+    "hostname": "open-vm-tools",
     "mounts": [
         {
             "destination": "/proc",
