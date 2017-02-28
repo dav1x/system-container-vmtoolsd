@@ -24,6 +24,8 @@ RUN yum -y localinstall open-vm-tools-10.0.5-2.el7_3.2.x86_64.rpm
 
 CMD /usr/bin/vmtoolsd
 
+ADD service.template config.json /exports/
+
 #ADD sssd.conf /
 #ADD sss_proxy /
 #ADD vmtoolsd-install.sh /usr/local/bin/vmtoolsd-install.sh
