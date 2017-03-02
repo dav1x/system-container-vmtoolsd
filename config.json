@@ -69,8 +69,179 @@
         "path": "rootfs",
         "readonly": true
     },
-    "hostname": "open-vm-tools",
     "mounts": [
+	 {
+            "destination": "/run/systemd",
+            "type": "bind",
+            "source": "/run/systemd",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },
+        {
+            "destination": "/etc/adjtime",
+            "type": "bind",
+            "source": "/etc/adjtime",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },
+        {
+            "destination": "/etc/hosts",
+            "type": "bind",
+            "source": "/etc/hosts",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },
+        {
+            "destination": "/tmp",
+            "type": "bind",
+            "source": "/tmp",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },
+        {
+            "destination": "/etc/sysconfig",
+            "type": "bind",
+            "source": "/etc/sysconfig",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },
+        {
+            "destination": "/etc/resolv.conf",
+            "type": "bind",
+            "source": "/etc/resolv.conf",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },
+        {
+            "destination": "/etc/shadow",
+            "type": "bind",
+            "source": "/etc/shadow",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },
+        {
+            "destination": "/sys/fs/cgroup",
+            "type": "bind",
+            "source": "/sys/fs/cgroup",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate",
+                "ro"
+            ]
+        },
+        {
+            "destination": "/hostproc",
+            "type": "bind",
+            "source": "/proc",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },
+        {
+            "destination": "/etc/hostname",
+            "type": "bind",
+            "source": "/etc/hostname",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },
+        {
+            "destination": "/sysroot",
+            "type": "bind",
+            "source": "/sysroot",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },
+        {
+            "destination": "/etc/passwd",
+            "type": "bind",
+            "source": "/etc/passwd",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },
+        {
+            "destination": "/usr/share/zoneinfo",
+            "type": "bind",
+            "source": "/usr/share/zoneinfo",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },
+        {
+            "destination": "/var/lib/sss/pipes",
+            "type": "bind",
+            "source": "/var/lib/sss/pipes",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },                      
+        {
+            "destination": "/etc/nsswitch.conf",
+            "type": "bind",
+            "source": "/etc/nsswitch.conf",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },
+        {
+            "destination": "/var/log",
+            "type": "bind",
+            "source": "/var/log",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },
+        {
+            "destination": "/host",
+            "type": "bind",
+            "source": "/",
+            "options": [
+                "rw",
+                "rbind",
+                "rprivate"
+            ]
+        },
+
         {
             "destination": "/proc",
             "type": "proc",
@@ -156,11 +327,8 @@
             ]
         },
         "namespaces": [
-            {
+	    {
                 "type": "ipc"
-            },
-            {
-                "type": "uts"
             },
             {
                 "type": "mount"
